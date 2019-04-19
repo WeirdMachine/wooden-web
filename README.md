@@ -2,6 +2,7 @@
 
 ![License](https://img.shields.io/github/license/jpavon/react-scripts-ts.svg)
 [![Build Status](https://travis-ci.com/WeirdMachine/wooden-web.svg?branch=master)](https://travis-ci.com/WeirdMachine/wooden-web)
+
 This is my github pages project.
 
 I will try some web frontend stuff here.
@@ -21,6 +22,10 @@ The Tutorial came with some differences because i use typescript integration and
 I was able to learn even more than the tutorial, because i was challenged with types in react from beginning on which
  helped me to understand the framework.
  
-## web-gl
+## WebGL
 
-I will start this when i finished TicTacToe and my base site
+I want to try some WebGL with custom shader configurations.
+
+As Scenario i choose a forest because i think there are a lot of things you can render inside.
+
+Later I will use [Phong reflection model](https://en.wikipedia.org/wiki/Phong_reflection_model) in this shaders.
