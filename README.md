@@ -1,8 +1,7 @@
 # wooden-web
 
 ![License](https://img.shields.io/github/license/jpavon/react-scripts-ts.svg)
-[![Build Status](https://img.shields.io/travis/com/WeirdMachine/woode-web.svg)](https://travis-ci.com/WeirdMachine/wooden-web)
-
+[![Build Status](https://travis-ci.com/WeirdMachine/wooden-web.svg?branch=master)](https://travis-ci.com/WeirdMachine/wooden-web)
 This is my github pages project.
 
 I will try some web frontend stuff here.
