@@ -29,3 +29,9 @@ I want to try some WebGL with custom shader configurations.
 As Scenario i choose a forest because i think there are a lot of things you can render inside.
 
 Later I will use [Phong reflection model](https://en.wikipedia.org/wiki/Phong_reflection_model) in this shaders.
+
+##Docker
+
+`docker run --rm -ti -u="node" -w="/home/node/ww" -v %cd%:/home/node/ww -p 3000:3000 node /bin/bash`
+
+Change %cd% with $(pwd) in Linux
