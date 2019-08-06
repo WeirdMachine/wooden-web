@@ -6,5 +6,5 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Game/>, div);
     ReactDOM.unmountComponentAtNode(div);
-    //Todo: Try this - https://www.valentinog.com/blog/testing-react/
+    // Todo: Try this - https://www.valentinog.com/blog/testing-react/
 });
