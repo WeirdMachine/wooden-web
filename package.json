@@ -9,6 +9,9 @@
   "author": "Matthias Osthues",
   "license": "MIT",
   "dependencies": {
+    "@types/gl-matrix": "^2.4.5",
+    "axios": "^0.19.0",
+    "gl-matrix": "^3.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts-ts": "3.1.0"

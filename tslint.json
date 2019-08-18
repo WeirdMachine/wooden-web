@@ -4,6 +4,9 @@
     "tslint-react",
     "tslint-config-prettier"
   ],
+  "rules": {
+    "no-console": false
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
