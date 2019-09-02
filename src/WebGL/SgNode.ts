@@ -1,12 +1,12 @@
-abstract class SGNode{
+abstract class SGNode {
 
   public readonly children: SGNode[];
 
-  public getChildren(){
+  public getChildren() {
     return this.children;
   }
 
-  public addChild(node: SGNode){
+  public addChild(node: SGNode) {
     this.children.push(node);
   }
 

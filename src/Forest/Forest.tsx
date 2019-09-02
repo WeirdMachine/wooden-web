@@ -18,10 +18,11 @@ class Forest extends React.Component {
   public componentDidMount() {
     if (this.canvas.current) {
       const canvas: HTMLCanvasElement = this.canvas.current;
-      this.webGl.webGLStart(canvas).then(r => console.log("init done"));
+      this.webGl.webGLStart(canvas).then(() => console.log("init done"));
     } else {
       console.log("No Canvas here :(")
     }
+
   }
 
   public render() {

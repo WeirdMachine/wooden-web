@@ -1,5 +1,6 @@
 import axios from "axios";
 import {mat4, vec3} from "gl-matrix";
+import Quader from "./Quader";
 import SGNode from "./SgNode";
 import Triangle from "./Triangle";
 
@@ -40,23 +41,31 @@ class WebGL {
     this.webGlCtx.enable(this.webGlCtx.DEPTH_TEST);
     this.webGlCtx.enable(this.webGlCtx.CULL_FACE);
 
-    console.log(this.webGlCtx.getParameter(this.webGlCtx.VERSION));
     console.log(this.webGlCtx.getParameter(this.webGlCtx.SHADING_LANGUAGE_VERSION));
 
-    // TODO: component as parameter
-    // Zusammensetzen eines Dreieck
-    const v1 = vec3.create();
-    vec3.set(v1, -0.75, 0.75, 0.0);
+    this.createScene()
 
-    const v2 = vec3.create();
-    vec3.set(v2, -0.75, -0.75, 0.0);
+  }
 
-    const v3 = vec3.create();
-    vec3.set(v3, 0.75, -0.75, 0.0);
 
-    const triangle = new Triangle(this.webGlCtx, this.vertexPositionAttribute, v1, v2, v3);
+  public drawScene(scene: SGNode) {
 
-    this.drawScene(triangle);
+    this.webGlCtx.viewport(0, 0, 500, 500);
+
+    // tslint:disable-next-line:no-bitwise
+    this.webGlCtx.clear(this.webGlCtx.COLOR_BUFFER_BIT | this.webGlCtx.DEPTH_BUFFER_BIT);
+
+    mat4.identity(this.projectionMatrix);
+    mat4.identity(this.viewMatrix);
+    mat4.identity(this.modelMatrix);
+
+    this.webGlCtx.uniformMatrix4fv(this.pMatrixUniform, false, this.projectionMatrix);
+    this.webGlCtx.uniformMatrix4fv(this.vMatrixUniform, false, this.viewMatrix);
+    this.webGlCtx.uniformMatrix4fv(this.mMatrixUniform, false, this.modelMatrix);
+
+    scene.draw();
+
+    window.requestAnimationFrame(() => this.drawScene(scene))
   }
 
   private createShader(tpye: GLenum, source: string): WebGLShader {
@@ -129,27 +138,51 @@ class WebGL {
 
   }
 
-  private drawScene(component: SGNode) {
+  private createScene() {
 
-    this.webGlCtx.viewport(0, 0, 500, 500);
+    // TODO: Eliminate webgl context to create primitives
+    Triangle.webGlCtx = this.webGlCtx;
+    Triangle.vertexPositionAttribute = this.vertexPositionAttribute;
 
-    // tslint:disable-next-line:no-bitwise
-    this.webGlCtx.clear(this.webGlCtx.COLOR_BUFFER_BIT | this.webGlCtx.DEPTH_BUFFER_BIT);
+    // Zusammensetzen eines Dreieck
+    const v1 = vec3.create();
+    vec3.set(v1, -0.75, 0.75, 0.0);
 
-    mat4.identity(this.projectionMatrix);
-    mat4.identity(this.viewMatrix);
-    mat4.identity(this.modelMatrix);
+    const v2 = vec3.create();
+    vec3.set(v2, -0.75, -0.75, 0.0);
 
-    this.webGlCtx.uniformMatrix4fv(this.pMatrixUniform, false, this.projectionMatrix);
-    this.webGlCtx.uniformMatrix4fv(this.vMatrixUniform, false, this.viewMatrix);
-    this.webGlCtx.uniformMatrix4fv(this.mMatrixUniform, false, this.modelMatrix);
+    const v3 = vec3.create();
+    vec3.set(v3, 0.75, -0.75, 0.0);
 
-    component.draw();
+    // ab hier für suqare
 
-    // TODO: webg ctx is not available in callback make it global?
-    // Ermöglicht Echtzeit Rendering und Animation
-    // window.requestAnimationFrame(this.drawScene)
+    const v4 = vec3.create();
+    vec3.set(v4, 0.75, 0.75, 0.0);
+    // ab hier für quader
+
+    const v5 = vec3.create();
+    vec3.set(v5, -0.75, 0.75, 0.75);
+
+    const v6 = vec3.create();
+    vec3.set(v6, -0.75, -0.75, 0.75);
+
+    const v7 = vec3.create();
+    vec3.set(v7, 0.75, -0.75, 0.75);
+
+    const v8 = vec3.create();
+    vec3.set(v8, 0.75, 0.75, 0.75);
+
+
+    const quader = new Quader(v1, v2, v3, v4, v5, v6, v7, v8);
+    // square = new Square(v1,v2,v3,v4);
+    // triangle1 = new Triangle(v3,v4,v1);
+    // triangle = new Triangle(v1,v2,v3);
+
+    this.drawScene(quader);
+
   }
+
+
 
 }
 

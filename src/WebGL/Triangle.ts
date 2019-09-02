@@ -1,17 +1,17 @@
+import {vec3} from "gl-matrix";
 import SGNode from "./SgNode";
 
-class Triangle extends SGNode{
+class Triangle extends SGNode {
+
+  // Todo: eliminate this
+  public static webGlCtx: WebGLRenderingContext;
+  public static vertexPositionAttribute: any;
 
   private readonly vertices: any;
   private vertexPositionBuffer: any;
 
-  private readonly webGlCtx: WebGLRenderingContext;
-  private readonly vertexPositionAttribute: any;
-
-  constructor(webGlCtx: WebGLRenderingContext, vertexPositionAttribute: any,  v1: any, v2: any, v3: any) {
+  constructor(v1: vec3, v2: vec3, v3: vec3) {
     super();
-    this.webGlCtx = webGlCtx;
-    this.vertexPositionAttribute = vertexPositionAttribute;
 
     this.vertices = [
       v1[0], v1[1], v1[2],
@@ -23,18 +23,18 @@ class Triangle extends SGNode{
   }
 
   public initBuffers(){
-    this.vertexPositionBuffer = this.webGlCtx.createBuffer();
-    this.webGlCtx.bindBuffer(this.webGlCtx.ARRAY_BUFFER, this.vertexPositionBuffer);
-    this.webGlCtx.bufferData(this.webGlCtx.ARRAY_BUFFER, new Float32Array(this.vertices), this.webGlCtx.STATIC_DRAW);
+    this.vertexPositionBuffer = Triangle.webGlCtx.createBuffer();
+    Triangle.webGlCtx.bindBuffer(Triangle.webGlCtx.ARRAY_BUFFER, this.vertexPositionBuffer);
+    Triangle.webGlCtx.bufferData(Triangle.webGlCtx.ARRAY_BUFFER, new Float32Array(this.vertices), Triangle.webGlCtx.STATIC_DRAW);
   }
 
   public draw(){
     // bindBuffer() immer vor vertexAttribPointer() ausführen,
     // damit der gebundene Buffer in die zugehörige Shader Variable geladen wird!
-    this.webGlCtx.bindBuffer(this.webGlCtx.ARRAY_BUFFER, this.vertexPositionBuffer);
-    this.webGlCtx.vertexAttribPointer(this.vertexPositionAttribute, 3, this.webGlCtx.FLOAT, false, 0, 0);
+    Triangle.webGlCtx.bindBuffer(Triangle.webGlCtx.ARRAY_BUFFER, this.vertexPositionBuffer);
+    Triangle.webGlCtx.vertexAttribPointer(Triangle.vertexPositionAttribute, 3, Triangle.webGlCtx.FLOAT, false, 0, 0);
 
-    this.webGlCtx.drawArrays(this.webGlCtx.TRIANGLES, 0, 3);
+    Triangle.webGlCtx.drawArrays(Triangle.webGlCtx.TRIANGLES, 0, 3);
   }
 }
 
