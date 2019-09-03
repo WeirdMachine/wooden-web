@@ -1,6 +1,6 @@
 abstract class SGNode {
 
-  public readonly children: SGNode[];
+  public readonly children: SGNode[] = [];
 
   public getChildren() {
     return this.children;

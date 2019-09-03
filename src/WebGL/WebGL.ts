@@ -6,18 +6,18 @@ import Triangle from "./Triangle";
 
 class WebGL {
 
-  private webGlCtx: WebGLRenderingContext;
+  private webGlCtx!: WebGLRenderingContext;
 
-  private fragmentShader: WebGLShader;
-  private vertexShader: WebGLShader;
+  private fragmentShader!: WebGLShader;
+  private vertexShader!: WebGLShader;
 
-  private shaderProgram: WebGLProgram;
+  private shaderProgram!: WebGLProgram;
 
-  private pMatrixUniform: WebGLUniformLocation;
-  private vMatrixUniform: WebGLUniformLocation;
-  private mMatrixUniform: WebGLUniformLocation;
+  private pMatrixUniform!: WebGLUniformLocation;
+  private vMatrixUniform!: WebGLUniformLocation;
+  private mMatrixUniform!: WebGLUniformLocation;
 
-  private vertexPositionAttribute: GLint;
+  private vertexPositionAttribute!: GLint;
 
   private modelMatrix = mat4.create();
   private viewMatrix = mat4.create();
